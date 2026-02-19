@@ -1,5 +1,7 @@
 /// <reference types="vitest" />
-
+/// <reference types="vitest/globals" />
+/// <reference types="@testing-library/jest-dom" />
+import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { HabitStatsPanel } from '../../src/components/HabitStatsPanel'
 import type { HabitWithStats } from '../../src/types/habit'
