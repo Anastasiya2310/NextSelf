@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { HabitList } from './components/HabitList'
 import { HabitForm } from './components/HabitForm'
 import { HabitCalendar } from './components/HabitCalendar'
