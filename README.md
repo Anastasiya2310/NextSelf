@@ -1,71 +1,73 @@
-# NextSelf
+# React + TypeScript + Vite
 
-A focused habit tracker that helps you build consistency and measure real progress.
-NextSelf allows users to create customizable habits, track streaks, and monitor monthly performance with clear statistics.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Screenshots
-![Home Screen](public/screenshots/desktop.png)
+Currently, two official plugins are available:
 
-## Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Habit Management
-- Create habits with a custom name
-- Assign a color to each habit
-- Set frequency:
-  - Daily
-  - Specific number of times per week
+## React Compiler
 
-### Progress Tracking
-- Current streak (consecutive days completed)
-- Monthly completion rate (in %)
-- Weekly and monthly target achievement status
-- Total days completed
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Visual Feedback
-- Color-coded habits
-- Clear success/failure indicators for targets
+## Expanding the ESLint configuration
 
-## How It Works
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- Daily habits require completion every day to maintain streak.
-- Weekly habits require hitting the defined number of completions per week.
-- Monthly completion percentage is calculated as:
-  completed_days / total_possible_days * 100
-- Target status shows whether the user met their defined frequency.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Tech Stack
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-Frontend:
-- React
-- TypeScript
-- Vite
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-### Development Tools
-- ESLint (for code quality and linting)
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## Installation
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-1. Clone repository
-   git clone https://github.com/Anastasiya2310/nextself.git
-
-2. Install dependencies
-   npm install
-
-3. Start development server
-   npm run dev
-
-## Project Structure
-
-src/
-  assets/
-  components/
-  hooks/
-  types/
-  utils/
-
-## Technical Improvements
-
-- Unit tests for streak calculation
-- Refactor statistics logic into pure utility functions
-- User profile
-- Add rewards for achieving goals
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
