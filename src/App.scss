@@ -50,14 +50,21 @@ $radius-pill: 999px;
 
 .app-title {
   margin: 0;
-  font-size: 1.9rem;
-  letter-spacing: -0.03em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 2rem;
+}
+
+.app-logo {
+  width: 200px
 }
 
 .app-subtitle {
   margin: 0.25rem 0 0;
   color: $color-text-muted;
-  font-size: 0.95rem;
 }
 
 .app-layout {

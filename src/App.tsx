@@ -37,10 +37,16 @@ function App() {
     <div className="app-root">
       <header className="app-header">
         <div>
-          <h1 className="app-title">Habit Tracker</h1>
-          <p className="app-subtitle">
-            Build better routines with a simple, focused tracker.
-          </p>
+          <h1 className="app-title">
+            <img
+              src="/logo.png"
+              alt="NextSelf logo"
+              className="app-logo"
+            />
+            <p className="app-subtitle">
+              Build better routines with a simple, focused tracker.
+            </p>
+          </h1>
         </div>
       </header>
 
