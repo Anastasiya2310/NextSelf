@@ -5,7 +5,7 @@ import { HabitCalendar } from './components/HabitCalendar'
 import { HabitStatsPanel } from './components/HabitStatsPanel'
 import { useHabits } from './hooks/useHabits'
 import type { HabitWithStats } from './types/habit'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 function App() {
   const {
@@ -17,21 +17,15 @@ function App() {
   } = useHabits()
   const [selectedHabitId, setSelectedHabitId] = useState<string | null>(null)
 
-  // Keep selection in sync with habit list
-  useEffect(() => {
-    if (habits.length === 0) {
-      setSelectedHabitId(null)
-      return
-    }
-
+  // Derive effective selected habit ID: use user's selection if valid, otherwise auto-select first
+  const effectiveSelectedHabitId = useMemo(() => {
+    if (habits.length === 0) return null
     const stillExists = habits.some((h) => h.id === selectedHabitId)
-    if (!stillExists) {
-      setSelectedHabitId(habits[0]?.id ?? null)
-    }
+    return stillExists ? selectedHabitId : habits[0]?.id ?? null
   }, [habits, selectedHabitId])
 
   const selectedHabit: HabitWithStats | undefined =
-    habits.find((h) => h.id === selectedHabitId) ?? habits[0]
+    habits.find((h) => h.id === effectiveSelectedHabitId) ?? habits[0]
 
   return (
     <div className="app-root">
@@ -55,7 +49,7 @@ function App() {
           <HabitForm onCreate={addHabit} />
           <HabitList
             habits={habits}
-            selectedHabitId={selectedHabit?.id ?? null}
+            selectedHabitId={effectiveSelectedHabitId}
             onSelectHabit={setSelectedHabitId}
             onDeleteHabit={removeHabit}
           />

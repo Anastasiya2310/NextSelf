@@ -92,4 +92,3 @@ export const HabitForm = ({ onCreate }: HabitFormProps) => {
     </form>
   )
 }
-

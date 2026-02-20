@@ -21,11 +21,6 @@ export const HabitListItem = memo(function HabitListItem({
     return `${habit.frequency}× / week`
   }, [habit.frequency])
 
-  // const completionLabel = useMemo(() => {
-  //   const pct = Math.round(habit.stats.monthlyCompletionRate)
-  //   return `${pct}% this month`
-  // }, [habit.stats.monthlyCompletionRate])
-
   const isOnTrackThisMonth = useMemo(() => {
     if (habit.stats.daysInMonth === 0 || habit.stats.monthlyCompletedCount === 0) {
       return false
@@ -101,4 +96,3 @@ export const HabitListItem = memo(function HabitListItem({
     </li>
   )
 })
-

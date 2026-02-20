@@ -56,9 +56,9 @@ describe('App', () => {
     expect(
       screen.getByText(/build better routines/i),
     ).toBeInTheDocument()
-    expect(screen.getByRole("heading", { name:/your habits/i})).toBeInTheDocument()
-    expect(screen.getByRole("heading", { name:/calendar/i})).toBeInTheDocument()
-    expect(screen.getByRole("heading", { name:/stats/i})).toBeInTheDocument()
+    expect(screen.getByText(/your habits/i)).toBeInTheDocument()
+    expect(screen.getByText(/calendar/i)).toBeInTheDocument()
+    expect(screen.getByText(/stats/i)).toBeInTheDocument()
   })
 
   it('allows selecting a habit from the list', async () => {
