@@ -40,4 +40,3 @@ export const HabitList = memo(function HabitList({
     </section>
   )
 })
-

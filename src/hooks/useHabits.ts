@@ -131,4 +131,3 @@ export const useHabits = () => {
     clearHabitCurrentMonth,
   }
 }
-

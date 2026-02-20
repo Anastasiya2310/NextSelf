@@ -1,15 +1,13 @@
 import { memo, useMemo } from 'react'
-import type { Habit, HabitWithStats } from '../types/habit'
+import type { HabitWithStats } from '../types/habit'
 import { getWeeklyCompletionCount } from '../utils/dateUtils'
 
 type HabitStatsPanelProps = {
   habit: HabitWithStats
-  // onUpdate: (updates: Partial<Omit<Habit, 'id'>>) => void
 }
 
 export const HabitStatsPanel = memo(function HabitStatsPanel({
   habit
-  // onUpdate,
 }: HabitStatsPanelProps) {
   const pctRounded = useMemo(() => {
     const raw = Math.round(habit.stats.monthlyCompletionRate)
@@ -105,4 +103,3 @@ export const HabitStatsPanel = memo(function HabitStatsPanel({
     </section>
   )
 })
-
