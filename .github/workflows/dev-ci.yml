@@ -1,13 +1,18 @@
 name: Dev CI
 
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
      - main
+
+concurrency:
+  group: dev-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
